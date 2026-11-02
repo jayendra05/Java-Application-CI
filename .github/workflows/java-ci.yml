@@ -1,0 +1,34 @@
+name: Java Application CI
+
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Build and Run Java Application
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Check Java Version
+        run: java --version
+
+      - name: Compile Java Code
+        run: javac HelloWorld.java
+
+      - name: Run Java Application
+        run: java HelloWorld
